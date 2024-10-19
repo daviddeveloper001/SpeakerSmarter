@@ -1,0 +1,31 @@
+created:
+    - app/Http/Controllers/LevelController.php
+    - app/Http/Controllers/LessonController.php
+    - app/Http/Controllers/CategoryController.php
+    - database/factories/LevelFactory.php
+    - database/factories/LessonFactory.php
+    - database/factories/CategoryFactory.php
+    - database/migrations/2024_10_17_222920_create_levels_table.php
+    - database/migrations/2024_10_17_222921_create_lessons_table.php
+    - database/migrations/2024_10_17_222922_create_categories_table.php
+    - database/migrations/2024_10_17_222923_create_category_lesson_table.php
+    - app/Models/Level.php
+    - app/Models/Lesson.php
+    - app/Models/Category.php
+    - database/seeders/LevelSeeder.php
+    - tests/Feature/Http/Controllers/LevelControllerTest.php
+    - tests/Feature/Http/Controllers/LessonControllerTest.php
+    - tests/Feature/Http/Controllers/CategoryControllerTest.php
+    - app/Http/Requests/LevelStoreRequest.php
+    - app/Http/Requests/LevelUpdateRequest.php
+    - app/Http/Requests/LessonStoreRequest.php
+    - app/Http/Requests/LessonUpdateRequest.php
+    - app/Http/Requests/CategoryStoreRequest.php
+    - app/Http/Requests/CategoryUpdateRequest.php
+updated:
+    - routes/web.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Level: { name: 'string:2', relationships: { hasMany: Lesson } }
+    Lesson: { name: 'string:150', description: longtext, image_uri: 'string:255 nullable', content_uri: 'string:255', pdf_uri: 'string:255', level_id: 'id foreign', relationships: { belongsToMany: Category, belongsTo: Level } }
+    Category: { name: 'string:100', relationships: { belongsToMany: Lesson } }

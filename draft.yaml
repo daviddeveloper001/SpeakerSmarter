@@ -1,0 +1,84 @@
+models:
+  Level:
+    name: string:2
+    relationships:
+      hasMany: Lesson
+
+  Lesson:
+    name: string:150
+    description: longtext
+    image_uri: string:255 nullable
+    content_uri: string:255
+    pdf_uri: string:255
+    level_id: id foreign
+    relationships:
+      belongsToMany: Category
+      belongsTo: Level
+
+  Category:
+    name: string:100
+    relationships:
+      belongsToMany: Lesson
+
+seeders: Level
+
+
+
+controllers:
+  Level:
+    index:
+      query: all
+    create:
+      find: level
+    edit:
+      find: level
+    store:
+      validate: name
+      save: level
+      redirect: level.index
+    show:
+      find: level
+    update:
+      validate: name
+      save: level
+      redirect: level.index
+    destroy:
+      delete: level
+  Lesson:
+    index:
+      query: all
+    create:
+      find: lession
+    edit:
+      find: lession
+    store:
+      validate: name, description, image_uri, content_uri, pdf_uri
+      save: lession
+      redirect: lession.index
+    show:
+      find: lession
+    update:
+      validate: name, description, image_uri, content_uri, pdf_uri
+      save: lession
+      redirect: lession.index
+    destroy:
+      delete: lession
+  Category:
+    index:
+      query: all
+    create:
+      find: category
+    edit:
+      find: category
+    store:
+      validate: name
+      save: category
+      redirect: category.index
+    show:
+      find: category
+    update:
+      validate: name
+      save: category
+      redirect: category.index
+    destroy:
+      delete: category
